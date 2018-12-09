@@ -165,19 +165,19 @@ public class binaryKth {
         int nextStartA = startA + Math.min(m-startA, k/2);
         int nextStartB = startB + k - nextStartA + startA;
 
-        // 如果A[nextStartA] < B[nextStartB]，去掉A的前nextStartA-startA个，在剩余的A和B里寻找第k-nextStartA + startA
-        if(A[nextStartA] < B[nextStartB]) {
+        // 如果A[nextStartA - 1] < B[nextStartB - 1]，去掉A的前nextStartA-startA个，在剩余的A和B里寻找第k-nextStartA + startA
+        if(A[nextStartA - 1] < B[nextStartB - 1]) {
             return find_kth(A, nextStartA, m, B, startB, n, k - nextStartA + startA);
         }
 
-        // 如果A[nextStartA] > B[nextStartB]，去掉B的前nextStartB-startB个，在剩余的B和A里寻找第k-nextStartB + startB
-        else if (A[nextStartA] > B[nextStartB]) {
+        // 如果A[nextStartA - 1] > B[nextStartB - 1]，去掉B的前nextStartB-startB个，在剩余的B和A里寻找第k-nextStartB + startB
+        else if (A[nextStartA - 1] > B[nextStartB - 1]) {
             return find_kth(A, startA, m, B, nextStartB, n, k - nextStartB + startB);
         }
 
-        // 如果A[nextStartA] == B[nextStartB]，直接返回
+        // 如果A[nextStartA - 1] == B[nextStartB - 1]，直接返回
         else {
-            return A[nextStartA];
+            return A[nextStartA - 1];
         }
     }
 }
